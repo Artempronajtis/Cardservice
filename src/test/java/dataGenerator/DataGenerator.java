@@ -1,4 +1,4 @@
-package data;
+package dataGenerator;
 
 import com.github.javafaker.Faker;
 import lombok.Value;
@@ -14,6 +14,7 @@ public class DataGenerator {
     public static String generateDate(int shift) {
         String date = LocalDate.now().plusDays(shift).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         return date;
+
     }
 
     public static String generateCity(String locale) {
@@ -33,6 +34,14 @@ public class DataGenerator {
         return phone;
     }
 
+
+    @Value
+    public static class UserInfo {
+        String city;
+        String name;
+        String phone;
+    }
+
     public static class Registration {
         private Registration() {
         }
@@ -41,12 +50,6 @@ public class DataGenerator {
             UserInfo user = new UserInfo(generateCity("ru"), generateName("ru"), generatePhone("ru"));
             return user;
         }
-
-        @Value
-        public static class UserInfo {
-            String city;
-            String name;
-            String phone;
-        }
     }
 }
+
